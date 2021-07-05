@@ -14,9 +14,43 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // dd($request->all());
+        $data = [];
+        $query = $request->query();
+        $where = array();
+     //   $where = $this->getQuery($where, $request);
+
+        if (!empty($request->from_date) && !empty($request->to_date)){
+            if (!empty($where)){
+                $data = Category::whereBetween('created_at', [$request->from_date, $request->to_date])
+                    ->where($where)
+                    ->with('organization')
+                    ->latest()
+                    ->paginate(10)
+                    ->appends($query);
+            }else{
+
+                $data = Category::whereBetween('created_at', [$request->from_date, $request->to_date])
+                    ->with('organization')
+                    ->latest()
+                    ->paginate(10)
+                    ->appends($query);
+            }
+
+        }else{
+            $data = Category::where($where)
+                ->latest()
+                ->paginate(10)
+                ->appends($query);
+        }
+
+        $param['query'] = $query;
+        $param['data'] = $data;
+
+        return Inertia::render('Categories/index',  ['data' => $param]);
+      //  return Inertia::render('Categories/index');
     }
 
     /**
@@ -26,7 +60,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Categories/index');
+        return Inertia::render('Categories/create');
     }
 
     /**

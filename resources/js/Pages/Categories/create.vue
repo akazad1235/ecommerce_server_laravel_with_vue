@@ -1,20 +1,20 @@
 <template>
     <app-layout>
-        <Index :data="data" :createMode="1" >
+        <Model :createMode="1" >
 
-        </Index>
+        </Model>
     </app-layout>
 </template>
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
-import Index from './components/Index'
+import Model from './components/Model'
 
 
 export default {
     components: {
         AppLayout,
-        Index,
+        Model,
 
     },
     props: ['data', 'errors', 'flash'],

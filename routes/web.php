@@ -41,6 +41,10 @@ Route::get('/home/product', [DashboardController::class, 'product'])->name('home
 Route::get('/home/brand', [DashboardController::class, 'brand'])->name('home.brand');
 Route::get('/logout', [DashboardController::class, 'logout']);
 
+//********************_Start Categories_********************
 
+Route::get('/categories/index', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
+
+//********************_Start Categories_********************
