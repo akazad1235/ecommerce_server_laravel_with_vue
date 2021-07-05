@@ -46,17 +46,17 @@
                     <div class="col-sm-12 date_root">
                         <label class="date_export bold" for="" >Export: </label>
 
-                        <button style="float: right;"  class="btn btn-data my-2 my-sm-0 mr-4 ml-3" type="button" >Go</button>
+                        <button style="float: right;"  @click="getDateData()"  class="btn btn-data my-2 my-sm-0 mr-4 ml-3" type="button" >Go</button>
 
                         <div class="date_sub" style="">
-                            <input name="to_date"  class="select_style" type="date" id="example-date-input">
+                            <input name="to_date" v-model="dateQuery.to_date"  class="select_style" type="date" id="example-date-input">
                         </div>
-                        <label class="date_lavel" for="example-date-input" >To </label>
+                        <label class="date_lavel" for="example-date-input">To </label>
 
                         <div class="date_sub" >
-                            <input nmae="from_date"  class="select_style" type="date">
+                            <input nmae="from_date"  v-model="dateQuery.from_date" class="select_style" type="date">
                         </div>
-                        <label class="date_lavel"  for="" >From </label>
+                        <label class="date_lavel"   >From </label>
                     </div>
                 </form>
                 <table class="table table-border table-striped custom-table datatable mb-0">
@@ -160,6 +160,9 @@ export default {
     methods: {
         getData: function () {
             this.$inertia.get('/categories/index', this.query)
+        },
+        getDateData: function () {
+            this.$inertia.get('/categories/index', this.dateQuery)
         },
         save(params){
 
