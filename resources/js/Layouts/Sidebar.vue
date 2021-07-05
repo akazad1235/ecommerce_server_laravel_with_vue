@@ -71,8 +71,8 @@
                             <i class="fa fa-users"></i> <span> Categores </span> <span class="menu-arrow"></span>
                         </a>
                         <ul class="child-menu" :style="getMenu('categories')">
-                            <jet-responsive-nav-link :href="route('categories.create')" :active="route().current('categories.create')">
-                                <span> Products</span>
+                            <jet-responsive-nav-link :href="route('categories.index')" :active="route().current('categories.index')">
+                                <span>All Categories</span>
                             </jet-responsive-nav-link>
                         </ul>
                     </li><!--**************_ Start Category_******************-->
@@ -124,7 +124,7 @@ export default {
             // ]
             // const organization = ['organization-users.index', 'organization-users.create']
              const user= ['home.index'];
-             const categories= ['categories.create'];
+             const categories= ['categories.create', 'categories.index'];
 
             if(menu === 'user' && user.includes(this.croute)) {
                 return 'display: block;'

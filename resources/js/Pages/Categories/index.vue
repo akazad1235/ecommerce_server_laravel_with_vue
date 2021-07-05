@@ -1,27 +1,27 @@
 <template>
     <app-layout>
-        <Index :data="data" :createMode="1" >
+        <Models :data="data" :createMode="1" :link="link" >
 
-        </Index>
+        </Models>
     </app-layout>
 </template>
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
-import Index from './components/Index'
-
+import Models from './components/Models'
 
 export default {
     components: {
+        Models,
         AppLayout,
-        Index,
+
 
     },
     props: ['data', 'errors', 'flash'],
     data () {
         return {
             title: 'Create Mail Settings',
-
+            link:'categories.create',
             label: 'Settings'
         }
     }

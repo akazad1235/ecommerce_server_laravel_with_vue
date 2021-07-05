@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {
@@ -16,24 +17,23 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
+
         // dd($request->all());
         $data = [];
         $query = $request->query();
         $where = array();
-     //   $where = $this->getQuery($where, $request);
+        $where = $this->getQuery($where, $request);
 
         if (!empty($request->from_date) && !empty($request->to_date)){
             if (!empty($where)){
                 $data = Category::whereBetween('created_at', [$request->from_date, $request->to_date])
                     ->where($where)
-                    ->with('organization')
                     ->latest()
                     ->paginate(10)
                     ->appends($query);
             }else{
 
                 $data = Category::whereBetween('created_at', [$request->from_date, $request->to_date])
-                    ->with('organization')
                     ->latest()
                     ->paginate(10)
                     ->appends($query);
@@ -52,6 +52,26 @@ class CategoryController extends Controller
         return Inertia::render('Categories/index',  ['data' => $param]);
       //  return Inertia::render('Categories/index');
     }
+
+    // search query builder
+    public function getQuery($where, $request)
+    {
+
+        if (!empty($request->search_type) && !empty($request->search_text)) {
+
+            if (($request->search_type) == 'name') {
+                $where = array_merge(array(['categories.name', 'LIKE', '%' . ($request->search_text) . '%']), $where);
+            }
+
+        }
+
+        //   if (!empty($request->organization_id)) {
+        //      return $where = array_merge(array(['mail_settings.organization_id', $request->organization_id]), $where);
+        //   }
+
+        return $where;
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -76,7 +96,7 @@ class CategoryController extends Controller
      $data['created_by'] = Auth::user()->id;
 
      Category::create($data);
-     return back();
+     return Redirect::back()->with('message', 'Categories Created successfully');
     }
 
     /**

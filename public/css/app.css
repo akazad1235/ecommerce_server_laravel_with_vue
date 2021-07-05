@@ -1193,6 +1193,9 @@ select {
 .mb-0 {
 	margin-bottom: 0px;
 }
+.mr-auto {
+	margin-right: auto;
+}
 .block {
 	display: block;
 }
