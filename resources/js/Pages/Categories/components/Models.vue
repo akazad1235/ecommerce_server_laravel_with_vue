@@ -75,7 +75,7 @@
                             <div class="dropdown dropdown-action ">
                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-ellipsis-v"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right " x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-91px, 27px, 0px);">
-                                    <a class="dropdown-item" ><i class="fa fa-pencil m-r-5"></i> View</a>
+                                    <a class="dropdown-item" :href="route('categories.show', [row.id])" ><i class="fa fa-pencil m-r-5"></i> View</a>
                                     <button   class="dropdown-item"  data-toggle="modal" data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i> Delete</button>
                                 </div>
                             </div>

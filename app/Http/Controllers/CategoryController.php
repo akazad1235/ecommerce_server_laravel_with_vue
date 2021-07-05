@@ -91,12 +91,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-     //dd($request->all());
+    // dd($request->all());
      $data = $request->all();
      $data['created_by'] = Auth::user()->id;
 
-     Category::create($data);
-     return Redirect::back()->with('message', 'Categories Created successfully');
+
+        if ($request->create_another == 1){
+            Category::create($data);
+            return Redirect::back()->with('message', 'Categories Created successfully');
+
+        }else{
+
+            return Redirect::route('categories.index');
+
+        }
     }
 
     /**
@@ -105,9 +113,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Category $category, $id)
     {
-        //
+        $data = Category::find($id);
+
+        return Inertia::render('Categories/view', ['data'=>$data]);
     }
 
     /**

@@ -5,12 +5,12 @@
         <div class="container-fluid user-bg-title">
             <div class="user-serchbox d-flex">
                 <div class="user-title capi">
-                    <h2 >dsfsdfsdf</h2>
+                    <h2>{{title}}</h2>
 
                 </div>
                 <div class="searchbox ml-auto">
                     <nav class="navbar user-nav d-flex nav-mr-top">
-                        <a class="btn btn-primary btn-sm cls rg-top-btn"><i class="fa fa-angle-left"></i> Mail Settings</a>
+                        <a :href="route(link)" :active="route().current(link)" class="btn btn-primary btn-sm cls rg-top-btn"><i class="fa fa-angle-left"></i>Go Back</a>
                     </nav>
                 </div>
             </div>
@@ -21,7 +21,9 @@
         <nav aria-label="Page breadcrumb">
             <ol class="breadcrumb padding-top">
                 <li class="breadcrumb-item" aria-current="page">Main</li>
-                <li class="breadcrumb-item" aria-current="page">Main</li>
+                <li class="breadcrumb-item" aria-current="page">Categories</li>
+                <li class="breadcrumb-item" aria-current="page">{{label}}</li>
+                <li class="breadcrumb-item" aria-current="page" v-if="viewMode">{{this.data.name}}</li>
 
 
             </ol>
@@ -34,21 +36,21 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Name <span class="text-red">*</span></label>
-                                <input class="form-control" type="text" v-model="form.name" placeholder="Enter Category Name"/>
+                                <input class="form-control" :class="viewMode==1? 'disabled' : ''" type="text" v-model="form.name" placeholder="Enter Category Name"/>
                             </div>
                         </div>
 
                     </div>
 
                     <div class="m-t-20 text-center">
-                        <!--create button start-->
-<!--                        <button style="margin-top: 40px; right: 18% !important;"-->
-<!--                                type="button" class="save_create"-->
-<!--                                wire:click.prevent="store()"-->
-<!--                                v-show="createMode"-->
-<!--                                @click="save_create(form)"-->
+<!--                        create button start-->
+                        <button style="margin-top: 40px; right: 18% !important;"
+                                type="button" class="save_create"
+                                wire:click.prevent="store()"
+                                v-show="createMode"
+                                @click="save_create(form)"
 
-<!--                        >Save & Create Another</button>-->
+                        >Save & Create Another</button>
                         <button style="margin-top: 40px;"
                                 type="button" class="save"
                                 wire:click.prevent="store()"
@@ -69,11 +71,11 @@
 <!--                            Update-->
 <!--                        </button>-->
                         <!--Edit button end-->
-<!--                        <button-->
-<!--                            type="button" class="save"-->
-<!--                            v-show="viewMode"-->
-<!--                            @click="Edit"-->
-<!--                        >Edit</button>-->
+                        <button
+                            type="button" class="save"
+                            v-show="viewMode"
+                            @click="Edit()"
+                        >Edit</button>
 
                     </div>
                 </form>
@@ -106,20 +108,29 @@ export default {
             form: {
                 index:'',
                 id: undefined,
-                name:null
+                name:null,
 
             }
         }
     },
     created () {
-        alert('ok');
+        if(this.viewMode){
+            this.form.name = this.data.name
+        }
     },
     methods: {
         save(params){
-
             this.$inertia.post('/categories/store', params);
+        },
+        save_create(params){
+            params['create_another'] = 1;
+            this.$inertia.post('/categories/store', params);
+            this.form ={}
+        },
+        Edit(){
 
         }
+
     }
 }
 </script>

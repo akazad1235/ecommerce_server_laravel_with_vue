@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <Model :data="data" :createMode="1" :link="link" :title="title" :label="label">
+        <Model :data="data" :viewMode="1" :link="link" :title="title" :label="label">
 
         </Model>
     </app-layout>
@@ -20,9 +20,9 @@ export default {
     props: ['data', 'errors', 'flash'],
     data () {
         return {
-            title: 'Create categories',
+            title: 'View Category',
             link:'categories.index',
-            label: 'Create categories'
+            label: 'View'
         }
     }
 }

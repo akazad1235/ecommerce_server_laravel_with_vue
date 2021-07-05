@@ -46,5 +46,6 @@ Route::get('/logout', [DashboardController::class, 'logout']);
 Route::get('/categories/index', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/categories/{id}/view', [CategoryController::class, 'show'])->name('categories.show');
 
 //********************_Start Categories_********************
