@@ -126,9 +126,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category, $id)
     {
-        //
+        $data =  Category::find($id);
+        return Inertia::render('Categories/edit', ['data'=>$data]);
     }
 
     /**
@@ -138,9 +139,14 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category, $id)
     {
-        //
+        $data =  $request->all();
+        $getData = Category::find($id);
+        $data['updated_by'] = Auth::user()->id;
+        $getData->update($data);
+
+        return Inertia::render('Categories/view', ['data'=>$getData]);
     }
 
     /**

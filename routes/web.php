@@ -47,5 +47,7 @@ Route::get('/categories/index', [CategoryController::class, 'index'])->name('cat
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
 Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
 Route::get('/categories/{id}/view', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::post('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
 
 //********************_Start Categories_********************

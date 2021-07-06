@@ -61,20 +61,20 @@
                         <!--create button end-->
 
                         <!--Edit button start-->
-<!--                        <button-->
-<!--                            type="button"-->
-<!--                            class="save"-->
-<!--                            wire:click.prevent="store()"-->
-<!--                            v-show="editMode"-->
-<!--                            @click="update(form)"-->
-<!--                        >-->
-<!--                            Update-->
-<!--                        </button>-->
+                        <button
+                            type="button"
+                            class="save"
+                            wire:click.prevent="store()"
+                            v-show="editMode"
+                            @click="update(form)"
+                        >
+                            Update
+                        </button>
                         <!--Edit button end-->
                         <button
                             type="button" class="save"
                             v-show="viewMode"
-                            @click="Edit()"
+                            @click="Edit"
                         >Edit</button>
 
                     </div>
@@ -117,6 +117,9 @@ export default {
         if(this.viewMode){
             this.form.name = this.data.name
         }
+        if(this.editMode){
+            this.form.name=this.data.name
+        }
     },
     methods: {
         save(params){
@@ -128,7 +131,12 @@ export default {
             this.form ={}
         },
         Edit(){
+            this.$inertia.get('/categories/'+this.data.id+'/edit');
 
+        },
+        update(params){
+
+            this.$inertia.post('/categories/'+this.data.id+'/update', params);
         }
 
     }
