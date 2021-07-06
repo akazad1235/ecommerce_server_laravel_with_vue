@@ -49,5 +49,6 @@ Route::post('/categories/store', [CategoryController::class, 'store'])->name('ca
 Route::get('/categories/{id}/view', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::post('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
+Route::get('/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 //********************_Start Categories_********************
