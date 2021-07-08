@@ -37,7 +37,9 @@
                             <div class="form-group">
                                 <label>Name <span class="text-red">*</span></label>
                                 <input class="form-control" :class="viewMode==1? 'disabled' : ''" type="text" v-model="form.name" placeholder="Enter Category Name"/>
+                                <div class="text-danger" v-if="errors.name">{{ errors.name }}</div>
                             </div>
+
                         </div>
 
                     </div>
@@ -87,28 +89,24 @@
 </template>
 
 <script>
-
+import Alert from "@/Pages/Component/Alert";
+import Header from "@/Pages/Component/Header";
 
 
 export default {
     components: {
+          Alert,
+          Header,
 
     },
-
-    props: ['data', 'errors','createMode','viewMode', 'editMode', 'link', 'title', 'label'],
+    props: ['data','errors', 'createMode','viewMode', 'editMode', 'link', 'title', 'label'],
     data () {
         return {
-            myValue: '',
-            myOptions:[{id: null, text: ''}],
-            mailOptions:[
-                {id: 'html', text: 'html'},
-                {id: 'css', text: 'css'},
-            ],
-            photo: null,
             form: {
                 index:'',
                 id: undefined,
                 name:null,
+                age:null
 
             }
         }
@@ -135,10 +133,13 @@ export default {
 
         },
         update(params){
-
             this.$inertia.post('/categories/'+this.data.id+'/update', params);
         }
+
 
     }
 }
 </script>
+<style>
+
+</style>

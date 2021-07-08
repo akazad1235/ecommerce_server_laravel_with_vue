@@ -124,7 +124,7 @@ export default {
             // ]
             // const organization = ['organization-users.index', 'organization-users.create']
              const user= ['home.index'];
-             const categories= ['categories.create', 'categories.index'];
+             const categories= ['categories.create', 'categories.index','categories.show', 'categories.update', 'categories.edit'];
 
             if(menu === 'user' && user.includes(this.croute)) {
                 return 'display: block;'

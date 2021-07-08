@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -92,18 +93,21 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
     // dd($request->all());
+        Validator::make($request->all(), [
+            'name' => ['required'],
+        ])->validate();
      $data = $request->all();
      $data['created_by'] = Auth::user()->id;
 
 
         if ($request->create_another == 1){
             Category::create($data);
-            return Redirect::back()->with('message', 'Categories Created successfully');
+            return redirect()->back()->with('message', 'Category Added Successfully.');
 
         }else{
 
-            return Redirect::route('categories.index');
-
+           return redirect()->route('categories.index')->with('error', 'Categories error successfully');
+         //   return redirect()->back()->with('error', 'Category Added Successfully.');
         }
     }
 

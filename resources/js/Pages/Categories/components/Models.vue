@@ -123,8 +123,7 @@ export default {
     components: {
 
     },
-
-    props: ['data', 'errors','createMode','viewMode', 'editMode', 'link', 'title', 'label'],
+    props: ['data','title','flash','errors','link','label'],
     data () {
         return {
             myValue: '',
