@@ -96,17 +96,15 @@ class CategoryController extends Controller
         Validator::make($request->all(), [
             'name' => ['required'],
         ])->validate();
-     $data = $request->all();
-     $data['created_by'] = Auth::user()->id;
 
+         $data = $request->all();
+         $data['created_by'] = Auth::user()->id;
+         Category::create($data);
 
         if ($request->create_another == 1){
-            Category::create($data);
             return redirect()->back()->with('message', 'Category Added Successfully.');
-
         }else{
-
-           return redirect()->route('categories.index')->with('error', 'Categories error successfully');
+           return redirect()->route('categories.index')->with('message', 'Category Added Successfully.');
          //   return redirect()->back()->with('error', 'Category Added Successfully.');
         }
     }
@@ -145,12 +143,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category, $id)
     {
-        $data =  $request->all();
-        $getData = Category::find($id);
-        $data['updated_by'] = Auth::user()->id;
-        $getData->update($data);
 
-        return Inertia::render('Categories/view', ['data'=>$getData]);
+        $name =  $request->name;
+        $getData = Category::find($id);
+        $updated_by= Auth::user()->id;
+        $getData->update(['name'=>$name, 'updated_by'=>$updated_by]);
+      //  return Inertia::render('Categories/create')->with('message', 'Categories Updated Success');
+        return Redirect::route('categories.show',$id)->with('message', 'Tasks Updated Successfully.');
     }
 
     /**
@@ -163,6 +162,6 @@ class CategoryController extends Controller
     {
         $data = Category::find($id);
         $data->delete($data);
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Categories Deleted Success');
     }
 }

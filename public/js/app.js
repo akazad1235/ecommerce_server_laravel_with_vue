@@ -19450,7 +19450,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
-  props: ['data', 'title', 'flash', 'errors', 'link', 'label'],
+  props: ['data', 'errors', 'title', 'flash', 'errors', 'link', 'label'],
   data: function data() {
     return {
       myValue: '',
@@ -19557,12 +19557,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _components_Model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Model */ "./resources/js/Pages/Categories/components/Model.vue");
+/* harmony import */ var _Pages_Component_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Component/Header */ "./resources/js/Pages/Component/Header.vue");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default,
-    Model: _components_Model__WEBPACK_IMPORTED_MODULE_1__.default
+    Model: _components_Model__WEBPACK_IMPORTED_MODULE_1__.default,
+    Header: _Pages_Component_Header__WEBPACK_IMPORTED_MODULE_2__.default
   },
   props: ['data', 'errors', 'flash'],
   data: function data() {
@@ -19589,12 +19592,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _components_Models__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Models */ "./resources/js/Pages/Categories/components/Models.vue");
+/* harmony import */ var _Pages_Component_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Component/Header */ "./resources/js/Pages/Component/Header.vue");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Models: _components_Models__WEBPACK_IMPORTED_MODULE_1__.default,
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default,
+    Header: _Pages_Component_Header__WEBPACK_IMPORTED_MODULE_2__.default
   },
   props: ['data', 'errors', 'flash'],
   data: function data() {
@@ -19621,12 +19627,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _components_Model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Model */ "./resources/js/Pages/Categories/components/Model.vue");
+/* harmony import */ var _Pages_Component_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Component/Header */ "./resources/js/Pages/Component/Header.vue");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default,
-    Model: _components_Model__WEBPACK_IMPORTED_MODULE_1__.default
+    Model: _components_Model__WEBPACK_IMPORTED_MODULE_1__.default,
+    Header: _Pages_Component_Header__WEBPACK_IMPORTED_MODULE_2__.default
   },
   props: ['data', 'errors', 'flash'],
   data: function data() {
@@ -24050,6 +24059,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_Header = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Header");
+
   var _component_Model = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Model");
 
   var _component_app_layout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-layout");
@@ -24058,13 +24069,29 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Model, {
         data: $props.data,
+        errors: $props.errors,
         editMode: 1,
         link: $data.link,
         title: $data.title,
         label: $data.label
-      }, null, 8
+      }, {
+        header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Header, {
+            title: $data.title,
+            flash: $props.flash,
+            errors: $props.errors,
+            link: $data.link,
+            label: $data.label
+          }, null, 8
+          /* PROPS */
+          , ["title", "flash", "errors", "link", "label"])];
+        }),
+        _: 1
+        /* STABLE */
+
+      }, 8
       /* PROPS */
-      , ["data", "link", "title", "label"])];
+      , ["data", "errors", "link", "title", "label"])];
     }),
     _: 1
     /* STABLE */
@@ -24088,6 +24115,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_Header = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Header");
+
   var _component_Models = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Models");
 
   var _component_app_layout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-layout");
@@ -24096,11 +24125,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Models, {
         data: $props.data,
-        createMode: 1,
-        link: $data.link
-      }, null, 8
+        link: $data.link,
+        label: $data.label,
+        title: $data.title
+      }, {
+        header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Header, {
+            title: $data.title,
+            flash: $props.flash,
+            errors: $props.errors,
+            link: $data.link,
+            label: $data.label
+          }, null, 8
+          /* PROPS */
+          , ["title", "flash", "errors", "link", "label"])];
+        }),
+        _: 1
+        /* STABLE */
+
+      }, 8
       /* PROPS */
-      , ["data", "link"])];
+      , ["data", "link", "label", "title"])];
     }),
     _: 1
     /* STABLE */
@@ -24124,6 +24169,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_Header = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Header");
+
   var _component_Model = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Model");
 
   var _component_app_layout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-layout");
@@ -24132,13 +24179,29 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Model, {
         data: $props.data,
+        errors: $props.errors,
         viewMode: 1,
         link: $data.link,
         title: $data.title,
         label: $data.label
-      }, null, 8
+      }, {
+        header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Header, {
+            title: $data.title,
+            flash: $props.flash,
+            errors: $props.errors,
+            link: $data.link,
+            label: $data.label
+          }, null, 8
+          /* PROPS */
+          , ["title", "flash", "errors", "link", "label"])];
+        }),
+        _: 1
+        /* STABLE */
+
+      }, 8
       /* PROPS */
-      , ["data", "link", "title", "label"])];
+      , ["data", "errors", "link", "title", "label"])];
     }),
     _: 1
     /* STABLE */
