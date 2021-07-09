@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,7 @@ Route::post('/categories/{id}/update', [CategoryController::class, 'update'])->n
 Route::get('/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 //********************_Start Categories_********************
+
+//********************_Start Brand_********************
+Route::resource('brand', BrandController::class);
+//********************_End Brand_********************

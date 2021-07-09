@@ -58,7 +58,7 @@
                             <i class="fa fa-users"></i> <span> Brand </span> <span class="menu-arrow"></span>
                         </a>
                         <ul class="child-menu" >
-                            <jet-responsive-nav-link :href="route('home.brand')" :active="route().current('home.brand')">
+                            <jet-responsive-nav-link :href="route('brand.index')" :active="route().current('brand.index')">
                                 <span> Brand</span>
                             </jet-responsive-nav-link>
 
@@ -124,9 +124,13 @@ export default {
             // ]
             // const organization = ['organization-users.index', 'organization-users.create']
              const user= ['home.index'];
+             const brand= ['brand.index'];
              const categories= ['categories.create', 'categories.index','categories.show', 'categories.update', 'categories.edit'];
 
             if(menu === 'user' && user.includes(this.croute)) {
+                return 'display: block;'
+            }
+            if(menu === 'brand' && brand.includes(this.croute)) {
                 return 'display: block;'
             }
             if(menu === 'categories' && categories.includes(this.croute)) {

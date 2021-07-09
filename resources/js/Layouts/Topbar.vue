@@ -20,10 +20,11 @@
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="profile.html">My Profile</a>
                 <a class="dropdown-item" >Change Password</a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" >
+                    <!-- Authentication -->
                     <form @submit.prevent="logout">
                         <jet-dropdown-link as="button">
-                            Logout
+                            Log Out
                         </jet-dropdown-link>
                     </form>
                 </a>
@@ -63,16 +64,18 @@ export default {
         JetNavLink,
         JetResponsiveNavLink
     },
-    methods: {
-        logout() {
-            axios.post(route('logout').url()).then(response => {
-                window.location = '/';
-            })
-            axios.get('/logout').then(res=>{
-                alert('got');
-            })
+     methods: {
+        // logout() {
+        //     alert('ddd');
+        //     axios.post(route('logout').url()).then(response => {
+        //         window.location = '/';
+        //     })
+        //
+        // },
 
-        },
-    }
+        logout() {
+            this.$inertia.post(route('logout'));
+        }
+     }
 }
 </script>
