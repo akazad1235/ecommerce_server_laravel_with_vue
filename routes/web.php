@@ -55,5 +55,8 @@ Route::get('/categories/{id}/delete', [CategoryController::class, 'destroy'])->n
 //********************_Start Categories_********************
 
 //********************_Start Brand_********************
+
 Route::resource('brand', BrandController::class);
+Route::post('/brand/{id}/update', [BrandController::class, 'update'])->name('brand.update');
+
 //********************_End Brand_********************

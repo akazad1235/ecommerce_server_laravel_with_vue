@@ -89,7 +89,7 @@ class BrandController extends Controller
            'name' =>$name,
            'logo' =>$fileName
        ]);
-       return redirect()->back()->with('message', 'Brand added successful');
+       return redirect()->route('brand.index')->with('message', 'Brand added successful');
     }
 
     /**
@@ -100,7 +100,8 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        $data = $brand;
+        return Inertia::render('Brand/view', ['data'=>$data]);
     }
 
     /**
@@ -111,7 +112,8 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        $data = $brand;
+        return Inertia::render('Brand/edit', ['data'=>$data]);
     }
 
     /**
@@ -121,9 +123,25 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, Brand $brand, $id)
     {
-        //
+        $data = Brand::find($id);
+        if($request->logo == null){
+            $fileName = $data->logo;
+        }else{
+            $logo = $request->file('logo');
+            $fileName = rand(0, 999999999) . '_' . date('Ymdhis').'_' . rand(100, 999999999) . '.' .  $logo->getClientOriginalExtension();
+            $logo->move(public_path('assets/images/brands/'), $fileName );
+        }
+        $name = $request->name;
+
+
+
+       $data->update([
+           'name' => $name,
+           'logo' => $fileName
+       ]) ;
+       return redirect()->back()->with('message', 'brand update successfull');
     }
 
     /**

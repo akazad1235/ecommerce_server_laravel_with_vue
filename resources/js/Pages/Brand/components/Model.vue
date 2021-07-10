@@ -31,7 +31,7 @@
         <div class="register-form">
             <div class="col-lg-8 offset-lg-2 from-wrapper">
                 <form>
-                    <div class="row justify-content-center">
+                    <div :class="viewMode? 'column':'row justify-content-center' ">
 
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -42,12 +42,11 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Name <span class="text-red">*</span></label>
-<!--                                <input class="form-control" type="file"  ref="file" :change="handleFileUpload()"/>-->
-                                <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                                <label>{{viewMode ? 'Logo':'Name'}} <span class="text-red">*</span></label>
+                                <input type="file" v-show="!viewMode" id="file"  ref="file" v-on:change="handleFileUpload()"/>
 <!--                                <div class="text-danger" v-if="errors.logo">{{ errors.logo }}</div>-->
+                                <img v-show="!createMode" :src="`/assets/images/brands/${data.logo}`" alt="image" style="width: 200px">
                             </div>
-                            <button @click="files()">file</button>
                         </div>
 
                     </div>
@@ -116,11 +115,13 @@ export default {
                 id: undefined,
                 name:null,
 
-
             }
         }
     },
     created () {
+        if(this.viewMode){
+           this.file =  this.data.logo
+        }
         if(this.viewMode){
             this.form.name = this.data.name
         }
@@ -138,17 +139,20 @@ export default {
             this.$inertia.post('/brand', data);
         },
         save_create(params){
-
             params['create_another'] = 1;
             this.$inertia.post('/categories/store', params);
             this.form ={}
         },
         Edit(){
-            this.$inertia.get('/categories/'+this.data.id+'/edit');
+            this.$inertia.get('/brand/'+this.data.id+'/edit');
 
         },
         update(params){
-            this.$inertia.post('/categories/'+this.data.id+'/update', params);
+            var data = new FormData()
+            data.append('name', params.name || '')
+            data.append('logo', this.file || '')
+
+            this.$inertia.post('/brand/'+this.data.id+'/update', data);
 
         },
         handleFileUpload(){
