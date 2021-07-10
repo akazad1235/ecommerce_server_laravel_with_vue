@@ -171,7 +171,7 @@ export default {
             this.$inertia.post('/categories/store', params);
         },
         getDelete(id){
-            this.$inertia.get('/categories/'+id+'/delete');
+            this.$inertia.get('/brand/'+id+'/delete');
 
         }
     }

@@ -132,10 +132,9 @@ class BrandController extends Controller
             $logo = $request->file('logo');
             $fileName = rand(0, 999999999) . '_' . date('Ymdhis').'_' . rand(100, 999999999) . '.' .  $logo->getClientOriginalExtension();
             $logo->move(public_path('assets/images/brands/'), $fileName );
+            unlink(public_path('assets/images/brands/'.$data->logo));
         }
         $name = $request->name;
-
-
 
        $data->update([
            'name' => $name,
@@ -150,8 +149,11 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy(Brand $brand, $id)
     {
-        //
+        $data =  Brand::find($id);
+        $data->delete();
+        unlink(public_path('assets/images/brands/'.$data->logo));
+        return redirect()->back()->with('message', 'brand delete success');
     }
 }

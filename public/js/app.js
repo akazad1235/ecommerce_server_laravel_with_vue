@@ -19440,7 +19440,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post('/categories/store', params);
     },
     getDelete: function getDelete(id) {
-      this.$inertia.get('/categories/' + id + '/delete');
+      this.$inertia.get('/brand/' + id + '/delete');
     }
   }
 });
