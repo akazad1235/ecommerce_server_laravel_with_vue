@@ -43,12 +43,9 @@
                           <i class="fa fa-users"></i> <span> Products </span> <span class="menu-arrow"></span>
                       </a>
                       <ul class="child-menu" >
-                        <jet-responsive-nav-link :href="route('home.product')" :active="route().current('home.product')">
+                        <jet-responsive-nav-link :href="route('product.index')" :active="route().current('product.index')">
                             <span> Products</span>
                           </jet-responsive-nav-link>
-
-
-
                       </ul>
                     </li><!--**************_ Start Product_******************-->
 
@@ -125,6 +122,7 @@ export default {
             // const organization = ['organization-users.index', 'organization-users.create']
              const user= ['home.index'];
              const brand= ['brand.index'];
+             const product= ['product.index'];
              const categories= ['categories.create', 'categories.index','categories.show', 'categories.update', 'categories.edit'];
 
             if(menu === 'user' && user.includes(this.croute)) {
@@ -134,6 +132,9 @@ export default {
                 return 'display: block;'
             }
             if(menu === 'categories' && categories.includes(this.croute)) {
+                return 'display: block;'
+            }
+            if(menu === 'product' && brand.includes(this.croute)) {
                 return 'display: block;'
             }
 

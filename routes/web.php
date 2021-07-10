@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,3 +62,10 @@ Route::post('/brand/{id}/update', [BrandController::class, 'update'])->name('bra
 Route::get('/brand/{id}/delete', [BrandController::class, 'destroy'])->name('brand.delete');
 
 //********************_End Brand_********************
+//********************_start Product_********************
+
+Route::resource('product', ProductController::class);
+Route::post('/brand/{id}/update', [ProductController::class, 'update'])->name('brand.update');
+Route::get('/brand/{id}/delete', [ProductController::class, 'destroy'])->name('brand.delete');
+
+//********************_End Product_********************
