@@ -38,7 +38,7 @@ class BrandController extends Controller
             }
 
         }else{
-            $data = Category::where($where)
+            $data = Brand::where($where)
                 ->latest()
                 ->paginate(10)
                 ->appends($query);

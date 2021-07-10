@@ -63,7 +63,8 @@
                     <thead>
                     <tr class="bg-white">
                         <th>#</th>
-                        <th>Category Name</th>
+                        <th>Name</th>
+                        <th>Logo</th>
                         <th class="text-right">Action</th>
                     </tr>
                     </thead>
@@ -71,6 +72,8 @@
                     <tr v-for="(row,index) in data['data'].data" :key="row.id">
                         <td>{{index+1}}</td>
                         <td>{{row.name}}</td>
+                        <td><img :src="`/assets/images/brands/${row.logo}`"   alt="image" style="width: 100px"></td>
+
                         <td class="text-right">
                             <div class="dropdown dropdown-action ">
                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-ellipsis-v"></i></a>
