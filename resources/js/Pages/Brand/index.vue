@@ -30,7 +30,7 @@ export default {
     data () {
         return {
             title: 'Create Mail Settings',
-            link:'categories.create',
+            link:'brand.create',
             label: 'Settings'
         }
     }

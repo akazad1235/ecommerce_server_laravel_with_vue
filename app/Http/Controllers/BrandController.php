@@ -69,7 +69,8 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        $data = '';
+        return Inertia::render('Brand/create', ['data' => $data]);
     }
 
     /**
@@ -80,7 +81,15 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $name =  $request->name;
+       $logo = $request->file('logo');
+       $fileName = rand(0, 999999999) . '_' . date('Ymdhis').'_' . rand(100, 999999999) . '.' .  $logo->getClientOriginalExtension();
+       $logo->move(public_path('assets/images/brands/'), $fileName );
+       Brand::create([
+           'name' =>$name,
+           'logo' =>$fileName
+       ]);
+       return redirect()->back()->with('message', 'Brand added successful');
     }
 
     /**

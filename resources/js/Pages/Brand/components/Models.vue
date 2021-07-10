@@ -5,7 +5,7 @@
         <div class="container-fluid user-bg-title">
             <div class="user-serchbox d-flex">
                 <div class="user-title capi">
-                    <h2>Categories List</h2>
+                    <h2>Brand List</h2>
 
                 </div>
                 <div class="searchbox ml-auto">

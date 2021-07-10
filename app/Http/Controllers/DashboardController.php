@@ -15,7 +15,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // dd('ok');
+         dd('ok');
 
         $data['user_type'] = User::find(1);
         return Inertia::render('Home/index', ['data' => $data]);

@@ -28,8 +28,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-    // Route::get('/azad', [DashboardController::class, 'index']);
+    return Inertia::render('Home/index');
+//     Route::get('/azad', [DashboardController::class, 'index']);
 
 
 })->name('dashboard');

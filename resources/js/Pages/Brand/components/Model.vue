@@ -5,12 +5,12 @@
         <div class="container-fluid user-bg-title">
             <div class="user-serchbox d-flex">
                 <div class="user-title capi">
-                    <h2 >dsfsdfsdf</h2>
+                    <h2>{{title}}</h2>
 
                 </div>
                 <div class="searchbox ml-auto">
                     <nav class="navbar user-nav d-flex nav-mr-top">
-                        <a class="btn btn-primary btn-sm cls rg-top-btn"><i class="fa fa-angle-left"></i> Mail Settings</a>
+                        <a :href="route(link)" :active="route().current(link)" class="btn btn-primary btn-sm cls rg-top-btn"><i class="fa fa-angle-left"></i>Go Back</a>
                     </nav>
                 </div>
             </div>
@@ -21,13 +21,75 @@
         <nav aria-label="Page breadcrumb">
             <ol class="breadcrumb padding-top">
                 <li class="breadcrumb-item" aria-current="page">Main</li>
-                <li class="breadcrumb-item" aria-current="page">Main</li>
+                <li class="breadcrumb-item" aria-current="page">Categories</li>
+                <li class="breadcrumb-item" aria-current="page">{{label}}</li>
+                <li class="breadcrumb-item" aria-current="page" v-if="viewMode">{{this.data.name}}</li>
 
 
             </ol>
         </nav>
-        <div>
-            this is Brand page
+        <div class="register-form">
+            <div class="col-lg-8 offset-lg-2 from-wrapper">
+                <form>
+                    <div class="row justify-content-center">
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name <span class="text-red">*</span></label>
+                                <input class="form-control" :class="viewMode==1? 'disabled' : ''" type="text" v-model="form.name" placeholder="Enter Category Name"/>
+                                <div class="text-danger" v-if="errors.name">{{ errors.name }}</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Name <span class="text-red">*</span></label>
+<!--                                <input class="form-control" type="file"  ref="file" :change="handleFileUpload()"/>-->
+                                <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+<!--                                <div class="text-danger" v-if="errors.logo">{{ errors.logo }}</div>-->
+                            </div>
+                            <button @click="files()">file</button>
+                        </div>
+
+                    </div>
+
+                    <div class="m-t-20 text-center">
+                        <!--                        create button start-->
+                        <button style="margin-top: 40px; right: 18% !important;"
+                                type="button" class="save_create"
+                                wire:click.prevent="store()"
+                                v-show="createMode"
+                                @click="save_create(form)"
+
+                        >Save & Create Another</button>
+                        <button style="margin-top: 40px;"
+                                type="button" class="save"
+                                wire:click.prevent="store()"
+                                v-show="createMode"
+                                @click="save(form)"
+
+                        >Save</button>
+                        <!--create button end-->
+
+                        <!--Edit button start-->
+                        <button
+                            type="button"
+                            class="save"
+                            wire:click.prevent="store()"
+                            v-show="editMode"
+                            @click="update(form)"
+                        >
+                            Update
+                        </button>
+                        <!--Edit button end-->
+                        <button
+                            type="button" class="save"
+                            v-show="viewMode"
+                            @click="Edit"
+                        >Edit</button>
+
+                    </div>
+                </form>
+            </div>
         </div>
 
 
@@ -35,42 +97,69 @@
 </template>
 
 <script>
-
+import Alert from "@/Pages/Component/Alert";
+import Header from "@/Pages/Component/Header";
 
 
 export default {
     components: {
+        Alert,
+        Header,
 
     },
-
-    props: ['data', 'errors','createMode','viewMode', 'editMode', 'link', 'title', 'label'],
+    props: ['data','errors', 'createMode','viewMode', 'editMode', 'link', 'title', 'label'],
     data () {
         return {
-            myValue: '',
-            myOptions:[{id: null, text: ''}],
-            mailOptions:[
-                {id: 'html', text: 'html'},
-                {id: 'css', text: 'css'},
-            ],
-            photo: null,
+            file:null,
             form: {
                 index:'',
                 id: undefined,
-                protocol:null,
-                type:null,
-                host:null,
-                port:null,
-                email:null,
-                password:null,
-                organization_id: null,
+                name:null,
+
+
             }
         }
     },
     created () {
-        alert('ok');
+        if(this.viewMode){
+            this.form.name = this.data.name
+        }
+        if(this.editMode){
+            this.form.name=this.data.name
+        }
     },
     methods: {
+
+        save(params){
+            var data = new FormData()
+            data.append('name', params.name || '')
+            data.append('logo', this.file || '')
+
+            this.$inertia.post('/brand', data);
+        },
+        save_create(params){
+
+            params['create_another'] = 1;
+            this.$inertia.post('/categories/store', params);
+            this.form ={}
+        },
+        Edit(){
+            this.$inertia.get('/categories/'+this.data.id+'/edit');
+
+        },
+        update(params){
+            this.$inertia.post('/categories/'+this.data.id+'/update', params);
+
+        },
+        handleFileUpload(){
+            alert('ok');
+            this.file = this.$refs.file.files[0];
+        }
+
 
     }
 }
 </script>
+<style>
+
+</style>
