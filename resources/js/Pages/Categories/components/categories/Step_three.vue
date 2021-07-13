@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form class="ml-3">
         <div class="row">
             <div class="col-md-5 card-box">
 
@@ -10,7 +10,7 @@
                 </div>
                 <div>
                     <label for="name">Sub Category step one<span class="text-red">*</span></label>
-                    <Select2 v-model="form.category_id" :options="myOptions"  />
+                    <Select2 v-model="form.subcategory_twos_id" :options="mySubCategoriesStepOne"  />
                 </div>
             </div>
             <div class="col-md-5 ml-3 card-box">
@@ -66,11 +66,13 @@ export default {
     data () {
         return {
             myOptions:[{id:null, text: ''}],
+            mySubCategoriesStepOne:[{id:null, text: ''}],
             form: {
                 index:'',
                 id: undefined,
                 name:null,
-                category_id:null
+                category_id:null,
+                subcategory_twos_id:null
 
             }
         }
@@ -88,10 +90,17 @@ export default {
                 text:this.data.categories[i].name
             })
         }
+            for (let j=0; j<this.data.sub_categories.length; j++){
+                this.mySubCategoriesStepOne.push({
+                    id:this.data.sub_categories[j].id,
+                    text:this.data.sub_categories[j].name
+                })
+
+        }
     },
     methods: {
         save(params){
-            this.$inertia.post('/categories/subcategoriesOne/store', params);
+            this.$inertia.post('/categories/subcategoriesTwo/store', params);
         },
         save_create(params){
             params['create_another'] = 1;

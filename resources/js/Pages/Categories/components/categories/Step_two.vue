@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form class="ml-3">
         <div class="row">
             <div class="col-md-5 card-box">
                 <h6 class="my-2">Report Information</h6>
@@ -62,6 +62,7 @@ export default {
     data () {
         return {
             myOptions:[{id:null, text: ''}],
+
             form: {
                 index:'',
                 id: undefined,
@@ -84,6 +85,7 @@ export default {
                 text:this.data.categories[i].name
             })
         }
+
     },
     methods: {
         save(params){

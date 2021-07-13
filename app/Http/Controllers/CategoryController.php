@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\SubcategoryThree;
 use App\Models\SubcategoryTwo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -179,7 +180,7 @@ class CategoryController extends Controller
        return Inertia::render('Categories/generate', ['data'=>$data]);
     }
     /**
-     * Create Generate for Sub-Category step two
+     * get Generate for Sub-Category step two
      */
     public function subCategoriesOne(){
         $data['categories']=Category::get();
@@ -199,10 +200,29 @@ class CategoryController extends Controller
 
     }
 
+    /**
+     * @return \Inertia\Response
+     */
     public function subCategoriesTwo(){
         $data['categories']=Category::get();
+        $data['sub_categories']=SubcategoryTwo::get();
         $data['step'] ='three';
         return Inertia::render('Categories/generate', ['data'=>$data]);
     }
 
+    /**
+     * store for categories in tep two
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function subCategoriesTwoStore(Request $request){
+
+        $data = $request->all();
+        $data['categories']=Category::get();
+        $data['step'] ='three';
+        SubcategoryThree::create($data);
+       //  return Inertia::render('Categories/index', ['data'=>$data]);
+        return redirect()->route('categories.index');
+
+    }
 }

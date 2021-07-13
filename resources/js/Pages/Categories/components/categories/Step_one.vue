@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form class="ml-3">
         <div class="row">
             <div class="col-md-10 card-box">
                 <h6 class="my-2">Report Information</h6>

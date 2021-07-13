@@ -57,7 +57,7 @@ Route::get('/categories/create',[CategoryController::class, 'generate'])->name('
 Route::get('/categories/sub-categories/one',[CategoryController::class, 'subCategoriesOne'])->name('categories.subcategories.one');
 Route::post('/categories/subcategoriesOne/store',[CategoryController::class, 'subCategoriesOneStore']);
 Route::get('/categories/sub-categories/two',[CategoryController::class, 'subCategoriesTwo'])->name('categories.subcategories.two');
-
+Route::post('/categories/subcategoriesTwo/store',[CategoryController::class, 'subCategoriesTwoStore']);
 
 
 //********************_Start Categories_********************
