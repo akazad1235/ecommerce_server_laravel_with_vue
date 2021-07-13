@@ -99,12 +99,15 @@ class CategoryController extends Controller
 
          $data = $request->all();
          $data['created_by'] = Auth::user()->id;
-         Category::create($data);
+        Category::create($data);
 
         if ($request->create_another == 1){
             return redirect()->back()->with('message', 'Category Added Successfully.');
         }else{
-           return redirect()->route('categories.index')->with('message', 'Category Added Successfully.');
+            $data['categories']=Category::get();
+            $data['step'] ='two';
+            return Inertia::render('Categories/generate', ['data'=>$data]);
+//           return redirect()->route('categories.index')->with('message', 'Category Added Successfully.');
          //   return redirect()->back()->with('error', 'Category Added Successfully.');
         }
     }
@@ -163,5 +166,20 @@ class CategoryController extends Controller
         $data = Category::find($id);
         $data->delete($data);
         return redirect()->back()->with('message', 'Categories Deleted Success');
+    }
+    /**
+     * Create Generate for Category in step one
+     */
+    public function generate(){
+        $data['step'] ='one';
+       return Inertia::render('Categories/generate', ['data'=>$data]);
+    }
+    /**
+     * Create Generate for Sub-Category step two
+     */
+    public function subCatgoriesOne(){
+        $data['categories']=Category::get();
+        $data['step'] ='two';
+        return Inertia::render('Categories/generate', ['data'=>$data]);
     }
 }

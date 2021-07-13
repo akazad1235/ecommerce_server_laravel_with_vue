@@ -48,7 +48,7 @@ class ProductController extends Controller
         $param['query'] = $query;
         $param['data'] = $data;
 
-        return Inertia::render('Categories/index',  ['data' => $param]);
+        return Inertia::render('Products/index',  ['data' => $param]);
         //  return Inertia::render('Categories/index');
     }
     // search query builder

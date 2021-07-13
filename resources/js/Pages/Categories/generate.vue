@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <Model :data="data" :createMode="1" :errors="errors" :title="title" :link="link" :label="label">
+        <Categories :data="data" :createMode="1" :errors="errors" :title="title" :link="link" :label="label">
             <template #header>
                 <Header
                     :title="title"
@@ -10,33 +10,28 @@
                     :label="label"
                 />
             </template>
-        </Model>
+        </Categories>
     </app-layout>
 </template>
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
-import Model from './components/Model'
-// import Alert from "@/Pages/Component/Alert";
-import Header from "@/Pages/Component/Header";
-
-
+import Categories from './components/Categories'
+import Header from '@/Pages/Component/Header'
 
 
 export default {
     components: {
+        Categories,
         AppLayout,
-        Model,
-        // Alert,
         Header
-
     },
     props: ['data', 'errors', 'flash'],
     data () {
         return {
-            title: 'Create categories',
-            link:'product.index',
-            label: 'Create categories'
+            title: 'Generate Report',
+            link: 'categories.generate',
+            label: 'Report'
         }
     }
 }

@@ -53,6 +53,9 @@ Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('
 Route::post('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
 Route::get('/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
+Route::get('/categories/generate',[CategoryController::class, 'generate'])->name('categories.generate');
+
+
 //********************_Start Categories_********************
 
 //********************_Start Brand_********************

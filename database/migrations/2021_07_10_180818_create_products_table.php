@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->integer('product_code');
             $table->enum('available', [1, 2])->default(1);
             $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->string('slug');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
