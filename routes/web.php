@@ -54,6 +54,7 @@ Route::post('/categories/{id}/update', [CategoryController::class, 'update'])->n
 Route::get('/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 Route::get('/categories/generate',[CategoryController::class, 'generate'])->name('categories.generate');
+Route::post('/categories/subcategoriesOne/store',[CategoryController::class, 'subCategoriesOneStore']);
 
 
 //********************_Start Categories_********************

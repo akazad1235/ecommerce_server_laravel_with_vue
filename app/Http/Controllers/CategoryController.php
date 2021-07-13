@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\SubcategoryTwo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -177,9 +178,21 @@ class CategoryController extends Controller
     /**
      * Create Generate for Sub-Category step two
      */
-    public function subCatgoriesOne(){
+    public function subCategoriesOne(){
         $data['categories']=Category::get();
         $data['step'] ='two';
         return Inertia::render('Categories/generate', ['data'=>$data]);
     }
+    /**
+     * Store for Sub-Category step two
+     */
+    public function subCategoriesOneStore(Request $request){
+        $data = $request->all();
+        $data['categories']=Category::get();
+        $data['step'] ='three';
+        SubcategoryTwo::create($data);
+        return Inertia::render('Categories/generate', ['data'=>$data]);
+
+    }
+
 }

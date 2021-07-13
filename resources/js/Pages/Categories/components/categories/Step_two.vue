@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-5 card-box">
                 <h6 class="my-2">Report Information</h6>
-                <div class="col-md-5 form-group">
+                <div class="form-group">
                     <label for="name">Category names<span class="text-red">*</span></label>
                     <input type="text" class="form-control" id="name" v-model="form.name">
                     <div class="text-danger" v-if="errors.name">{{ errors.name}}</div>
@@ -87,7 +87,7 @@ export default {
     },
     methods: {
         save(params){
-            this.$inertia.post('/categories/store', params);
+            this.$inertia.post('/categories/subcategoriesOne/store', params);
         },
         save_create(params){
             params['create_another'] = 1;

@@ -19877,7 +19877,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     save: function save(params) {
-      this.$inertia.post('/categories/store', params);
+      this.$inertia.post('/categories/subcategoriesOne/store', params);
     },
     save_create: function save_create(params) {
       params['create_another'] = 1;
@@ -25586,7 +25586,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 );
 
 var _hoisted_4 = {
-  "class": "col-md-5 form-group"
+  "class": "form-group"
 };
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
