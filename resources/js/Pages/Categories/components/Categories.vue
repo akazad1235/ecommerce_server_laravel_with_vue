@@ -70,16 +70,16 @@ import Alert from '@/Pages/Component/Alert'
 // import { Datetime } from 'vue-datetime';
 import Step_one from './categories/Step_one'
 import Step_two from './categories/Step_two'
-// import Step_three from './Report/Step_three'
-// // import Step_three from './Form/Step_three'
-// import Step_four from './Report/Step_four'
+import Step_three from './categories/Step_three'
+
 
 
 export default {
     components: {
         Alert,
         Step_one,
-        Step_two
+        Step_two,
+        Step_three
 
     },
     props: ['data', 'errors', 'editMode', 'link', 'title', 'label'],
@@ -89,7 +89,6 @@ export default {
     },
 
     created () {
-        alert(this.data.step)
     },
     methods: {
 

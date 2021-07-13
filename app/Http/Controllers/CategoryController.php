@@ -107,9 +107,12 @@ class CategoryController extends Controller
         }else{
             $data['categories']=Category::get();
             $data['step'] ='two';
-            return Inertia::render('Categories/generate', ['data'=>$data]);
+           //return Inertia::render('Categories/generate', ['data'=>$data]);
 //           return redirect()->route('categories.index')->with('message', 'Category Added Successfully.');
          //   return redirect()->back()->with('error', 'Category Added Successfully.');
+         //   return redirect()->back()->with('error', 'Category Added Successfully.');
+            return redirect()->route('categories.subcategories.one');
+
         }
     }
 
@@ -191,8 +194,15 @@ class CategoryController extends Controller
         $data['categories']=Category::get();
         $data['step'] ='three';
         SubcategoryTwo::create($data);
-        return Inertia::render('Categories/generate', ['data'=>$data]);
+       // return Inertia::render('Categories/generate', ['data'=>$data]);
+        return redirect()->route('categories.subcategories.two');
 
+    }
+
+    public function subCategoriesTwo(){
+        $data['categories']=Category::get();
+        $data['step'] ='three';
+        return Inertia::render('Categories/generate', ['data'=>$data]);
     }
 
 }

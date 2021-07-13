@@ -53,8 +53,11 @@ Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('
 Route::post('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
 Route::get('/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-Route::get('/categories/generate',[CategoryController::class, 'generate'])->name('categories.generate');
+Route::get('/categories/create',[CategoryController::class, 'generate'])->name('categories.generate');
+Route::get('/categories/sub-categories/one',[CategoryController::class, 'subCategoriesOne'])->name('categories.subcategories.one');
 Route::post('/categories/subcategoriesOne/store',[CategoryController::class, 'subCategoriesOneStore']);
+Route::get('/categories/sub-categories/two',[CategoryController::class, 'subCategoriesTwo'])->name('categories.subcategories.two');
+
 
 
 //********************_Start Categories_********************
