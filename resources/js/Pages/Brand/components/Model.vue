@@ -156,7 +156,6 @@ export default {
 
         },
         handleFileUpload(){
-            alert('ok');
             this.file = this.$refs.file.files[0];
         }
 

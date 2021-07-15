@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -90,7 +91,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      // dd($request->all());
+        $data = $request->all();
+        $data['product_code']= mt_rand(000001, 999999);
+        $data['slug'] = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+        $image = $request->file('image');
+        $fileName = rand(0, 999999999) . '_' . date('Ymdhis').'_' . rand(100, 999999999) . '.' .  $image->getClientOriginalExtension();
+        $image->move(public_path('assets/images/products/'), $fileName );
+        $data['image'] = $fileName;
+
+        Product::create($data);
+        return redirect()->back()->with('message', 'product added sucess');
+
     }
 
     /**
@@ -143,6 +155,8 @@ class ProductController extends Controller
      */
     public function generates(){
         $data['step'] = 'one';
+        $data['brands']=Brand::get();
+        $data['categories']=Category::get();
         return Inertia::render('Products/generate',['data'=>$data]);
     }
 }
