@@ -142,7 +142,7 @@ class ProductController extends Controller
      * @return \Inertia\Response
      */
     public function generates(){
-        $data='';
+        $data['step'] = 'one';
         return Inertia::render('Products/generate',['data'=>$data]);
     }
 }
