@@ -137,4 +137,12 @@ class ProductController extends Controller
     {
         //
     }
+
+    /**
+     * @return \Inertia\Response
+     */
+    public function generates(){
+        $data='';
+        return Inertia::render('Products/generate',['data'=>$data]);
+    }
 }

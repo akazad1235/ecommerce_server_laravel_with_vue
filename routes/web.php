@@ -72,6 +72,7 @@ Route::get('/brand/{id}/delete', [BrandController::class, 'destroy'])->name('bra
 //********************_start Product_********************
 
 Route::resource('product', ProductController::class);
+Route::get('/products/generate', [ProductController::class, 'generates'])->name('products.generate');
 Route::post('/brand/{id}/update', [ProductController::class, 'update'])->name('brand.update');
 Route::get('/brand/{id}/delete', [ProductController::class, 'destroy'])->name('brand.delete');
 

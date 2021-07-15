@@ -1,6 +1,6 @@
 <template>
     <app-layout>
-        <Models :data="data" :link="link" :label="label" :title="title" >
+        <Products :data="data" :createMode="1" :errors="errors" :title="title" :link="link" :label="label">
             <template #header>
                 <Header
                     :title="title"
@@ -10,28 +10,28 @@
                     :label="label"
                 />
             </template>
-        </Models>
+        </Products>
     </app-layout>
 </template>
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
-import Models from './components/Models'
-import Header from "@/Pages/Component/Header";
+import Products from './components/Products'
+import Header from '@/Pages/Component/Header'
 
 
 export default {
     components: {
-        Models,
+        Products,
         AppLayout,
         Header
     },
     props: ['data', 'errors', 'flash'],
     data () {
         return {
-            title: 'Create Mail Settings',
-            link:'products.generate',
-            label: 'Settings'
+            title: 'Generate Report',
+            link: 'categories.generate',
+            label: 'Report'
         }
     }
 }
