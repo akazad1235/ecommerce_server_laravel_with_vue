@@ -6,15 +6,17 @@
                 <div class="form-group">
                     <label for="name">Name<span class="text-red">*</span></label>
                     <input type="text" class="form-control" id="name" v-model="form.title">
-                    <div class="text-danger" v-if="errors.name">{{ errors.name}}</div>
+                    <div class="text-danger" v-if="errors.title">{{ errors.title}}</div>
                 </div>
                 <div class="form-group">
                         <label for="name">Select Brand<span class="text-red">*</span></label>
                         <Select2 v-model="form.brand_id" :options="myBrands"  />
+                    <div class="text-danger" v-if="errors.brand_id">{{ errors.brand_id}}</div>
                 </div>
                 <div class="form-group">
                     <label for="name">Select Category<span class="text-red">*</span></label>
                     <Select2 v-model="form.category_id" :options="myCategories"  />
+                    <div class="text-danger" v-if="errors.category_id">{{ errors.category_id}}</div>
                 </div>
                 <div class="form-group">
                     <input type="checkbox" v-model="subCatsOne">
@@ -23,6 +25,7 @@
                 <div v-if="subCatsOne == true" class="form-group">
                     <label for="name">Select Category</label>
                     <Select2 v-model="form.subcategory_twos_id" :options="mySubCategoriesStepOne"  />
+                    <div class="text-danger" v-if="errors.subcategory_twos_id">{{ errors.subcategory_twos_id}}</div>
                 </div>
                 <div  class="form-group">
                     <input type="checkbox" v-model="subCatsTwo">
@@ -31,14 +34,17 @@
                 <div v-if="subCatsTwo == true" class="form-group">
                     <label for="name">Select Category</label>
                     <Select2 v-model="form.subcategory_twos_id" :options="mySubCategoriesStepOne"  />
+                    <div class="text-danger" v-if="errors.subcategory_twos_id">{{ errors.subcategory_twos_id}}</div>
                 </div>
                 <div class="form-group">
                     <label for="name">Status</label>
                     <Select2 v-model="form.status" :options="myStatus"  />
+                    <div class="text-danger" v-if="errors.status">{{ errors.status}}</div>
                 </div>
                 <div class="form-group">
                     <label for="name">Remark</label>
                     <Select2 v-model="form.remark" :options="myRemark"  />
+                    <div class="text-danger" v-if="errors.remark">{{ errors.remark}}</div>
                 </div>
 
             </div>
@@ -47,23 +53,22 @@
                 <div class="form-group mt-5">
                     <label for="price">Price<span class="text-red">*</span></label>
                     <input type="number" class="form-control" id="price" v-model="form.price">
-                    <div class="text-danger" v-if="errors.name">{{ errors.name}}</div>
+                    <div class="text-danger" v-if="errors.price">{{ errors.price}}</div>
                 </div>
                 <div class="form-group">
                     <label for="img">Main Image<span class="text-red">*</span></label>
                     <input type="file" class="form-control"  id="img"  ref="file" v-on:change="handleFileUpload()"/>
-                    <div class="text-danger" v-if="errors.name">{{ errors.name}}</div>
+                    <div class="text-danger" v-if="errors.image">{{ errors.image}}</div>
                 </div>
                 <div class="form-group">
                     <label for="sort-text">Sort Description<span class="text-red">*</span></label>
                     <textarea name="sort-des" id="sort-text" cols="56" rows="7" v-model="form.sort_desc"></textarea>
-                    <div class="text-danger" v-if="errors.name">{{ errors.name}}</div>
+                    <div class="text-danger" v-if="errors.sort_desc">{{ errors.sort_desc}}</div>
                 </div>
                 <div class="form-group">
                     <label for="desc">Description<span class="text-red">*</span></label>
                     <textarea name="desc" id="desc" cols="56" rows="7" v-model="form.desc"></textarea>
-                    <div class="text-danger" v-if="errors.name">{{ errors.name}}</div>
-                    d{{form.desc}}
+                    <div class="text-danger" v-if="errors.desc">{{ errors.desc}}</div>
                 </div>
             </div>
         </div>

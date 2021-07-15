@@ -33,14 +33,10 @@
         </nav>
 
         <div class="col-md-12">
-            <button type="button" class="btn btn-color" v-if="data.step == 'one'">1 Report Information</button>
-            <button type="button" class="btn btn-outline-secondary btn-inactive" v-if="data.step != 'one'">1 Report Information</button>
-            <button type="button" class="btn btn-color"  v-if="data.step == 'two'">2 Data Representation</button>
-            <button type="button" class="btn btn-outline-secondary btn-inactive"  v-if="data.step != 'two'">2 Data Representation</button>
-            <button type="button" class="btn btn-color"   v-if="data.step == 'three'">3 Filter</button>
-            <button type="button" class="btn btn-outline-secondary btn-inactive"   v-if="data.step != 'three'">3 Filter</button>
-            <button type="button" class="btn btn-color"   v-if="data.step == 'four'">3 Review</button>
-            <button type="button" class="btn btn-outline-secondary btn-inactive"   v-if="data.step != 'four'">3 Review</button>
+            <button type="button" class="btn btn-color" v-if="data.step == 'one'">1 Product Information</button>
+            <button type="button" class="btn btn-outline-secondary btn-inactive" v-if="data.step != 'one'">1 Product Information</button>
+            <button type="button" class="btn btn-color"  v-if="data.step == 'two'">2 Product Images</button>
+            <button type="button" class="btn btn-outline-secondary btn-inactive"  v-if="data.step != 'two'">2 Product Images</button>
 
 
             <div>
@@ -51,14 +47,10 @@
                 <div v-if="data.step == 'two'">
                     <Step_two :data="data" :errors="errors" :title="title" :link="link" :label="label" ></Step_two>
                 </div>
-                <div v-if="data.step == 'three'">
-                    <Step_three :data="data" :errors="errors" :title="title" :link="link" :label="label" editMode="1"></Step_three>
-                </div>
+
             </div>
 
-            <div v-if="data.step == 'four'">
-                <Step_four :data="data" :errors="errors" :title="title" :link="link" :label="label" editMode="1"></Step_four>
-            </div>
+
         </div>
 
         <!--        </div>-->
@@ -70,7 +62,7 @@ import Alert from '@/Pages/Component/Alert'
 // import { Datetime } from 'vue-datetime';
 import Step_one from './products/Step_one'
 // import Step_two from './categories/Step_two'
-// import Step_three from './categories/Step_three'
+
 
 
 
@@ -79,7 +71,7 @@ export default {
         Alert,
         Step_one,
         // Step_two,
-        // Step_three
+
 
     },
     props: ['data', 'errors', 'editMode', 'link', 'title', 'label'],

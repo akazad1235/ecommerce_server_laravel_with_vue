@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -92,6 +93,18 @@ class ProductController extends Controller
     public function store(Request $request)
     {
       // dd($request->all());
+        Validator::make($request->all(), [
+            'title' => ['required'],
+            'price' => ['required'],
+            'brand_id' => ['required'],
+            'category_id' => ['required'],
+            'status' => ['required'],
+            'remark' => ['required'],
+            'sort_desc' => ['required'],
+            'desc' => ['required'],
+            'image' => ['required'],
+
+        ])->validate();
         $data = $request->all();
         $data['product_code']= mt_rand(000001, 999999);
         $data['slug'] = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
@@ -99,7 +112,6 @@ class ProductController extends Controller
         $fileName = rand(0, 999999999) . '_' . date('Ymdhis').'_' . rand(100, 999999999) . '.' .  $image->getClientOriginalExtension();
         $image->move(public_path('assets/images/products/'), $fileName );
         $data['image'] = $fileName;
-
         Product::create($data);
         return redirect()->back()->with('message', 'product added sucess');
 
