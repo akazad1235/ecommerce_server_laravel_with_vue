@@ -19,6 +19,7 @@ class CreateProductImagesTable extends Migration
             $table->string('image_one');
             $table->string('image_two');
             $table->string('image_three');
+            $table->string('slug');
             $table->timestamps();
         });
     }

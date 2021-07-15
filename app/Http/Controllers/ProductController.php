@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
@@ -113,7 +114,7 @@ class ProductController extends Controller
         $image->move(public_path('assets/images/products/'), $fileName );
         $data['image'] = $fileName;
         Product::create($data);
-        return redirect()->back()->with('message', 'product added sucess');
+        return redirect()->route('products.images', ['slug'=>$data['slug']]);
 
     }
 
@@ -170,5 +171,45 @@ class ProductController extends Controller
         $data['brands']=Brand::get();
         $data['categories']=Category::get();
         return Inertia::render('Products/generate',['data'=>$data]);
+    }
+
+    /**
+     * @param $slug
+     */
+    public function productImages($slug){
+
+        $data['slug'] = $slug;
+        $data['step'] = 'two';
+        return Inertia::render('Products/generate',['data'=>$data]);
+    }
+    public function productImagesStore(Request $request, $slug){
+       // dd($request->all());
+        $catId= Product::where('slug',$slug)->first();
+        $imageOne = $request->file('image_one');
+       // dd($imageOne);
+        $imageTwo = $request->file('image_two');
+        $imageThree = $request->file('image_three');
+
+        if($imageOne->getFilename() !=null){
+            $fileNameOne = rand(0, 999999999) . '_' . date('Ymdhis').'_' . rand(100, 999999999) . '.' .  $imageOne->getClientOriginalExtension();
+            $imageOne->move(public_path('assets/images/products/'), $fileNameOne );
+            $data['image_one'] = $fileNameOne;
+        }
+        if($imageTwo){
+            $fileNameTwo = rand(0, 999999999) . '_' . date('Ymdhis').'_' . rand(100, 999999999) . '.' .  $imageTwo->getClientOriginalExtension();
+            $imageTwo->move(public_path('assets/images/products/'), $fileNameTwo );
+            $data['image_two'] = $fileNameTwo;
+        }
+        if($imageThree){
+            $fileNameThree = rand(0, 999999999) . '_' . date('Ymdhis').'_' . rand(100, 999999999) . '.' .  $imageThree->getClientOriginalExtension();
+            $imageThree->move(public_path('assets/images/products/'), $fileNameThree );
+            $data['image_three'] = $fileNameThree;
+        }
+
+        $data['slug'] = $slug;
+        $data['product_id'] = $catId->id;
+
+        ProductImage::create($data);
+        return redirect()->back();
     }
 }

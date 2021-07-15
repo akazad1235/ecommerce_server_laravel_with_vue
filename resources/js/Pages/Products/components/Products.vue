@@ -61,7 +61,8 @@
 import Alert from '@/Pages/Component/Alert'
 // import { Datetime } from 'vue-datetime';
 import Step_one from './products/Step_one'
-// import Step_two from './categories/Step_two'
+import Step_two from './products/Step_two'
+
 
 
 
@@ -70,7 +71,7 @@ export default {
     components: {
         Alert,
         Step_one,
-        // Step_two,
+        Step_two,
 
 
     },
