@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
+use App\Mail\CustomerMailVerify;
 use App\Models\Category;
-use App\Models\Product;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
-class ProductController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return 'showsfdsdf';
+        //
     }
 
     /**
@@ -28,6 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -36,9 +38,23 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
 
+      //  $data = $request->all();
+        $name = $request->fname;
+        $phone = $request->phone;
+        $email = $request->email;
+        $code = mt_rand(00001, 999999);
+
+
+//        Customer::create([
+//            'name' => $name,
+//            'email' => $email,
+//            'phone' => $phone,
+//            'email_verified_code' => $code
+//        ]);
+        Mail::to($email)->send(new CustomerMailVerify($email, $code, $name));
+        return 'ok' ;
     }
 
     /**
@@ -49,7 +65,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -60,7 +76,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -72,7 +88,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //
     }
 
     /**
@@ -83,43 +99,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        return 'show';
+        //
     }
-
-    /**
-     * @param $name
-     * @return \Illuminate\Http\JsonResponse|string
-     */
-    public function getProduct($name){
-        $getProByCat = Product::get();
-        return response()->json(['data'=>$getProByCat, 'status'=>200]);
-    }
-
-    public function productDetails($slug){
-        $data = Product::where('slug', $slug)->first();
-       return response()->json(['success'=>$data]);
-    }
-
-
-
-    /**
-     * @param $type
-     */
-    public function categoriesFilter($id){
-       // $data = Cateories::with(categories)->get();
-         $data = Product::where('category_id', $id)->get();
-        return response()->json(['success'=>$data]);
-    }
-
-    public function categoriesFilterProduct($type){
-       $getCatName =  Category::where('name', $type)->first();
-      $data = Product::where('category_id',$getCatName->id)->get();
-        return response()->json(['success'=>$data]);
-    }
-    public function brandFilterProduct($id){
-        $data = Product::where('brand_id', $id)->get();
-        return response()->json(['success'=>$data]);
-    }
-
-
 }

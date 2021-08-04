@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,5 +79,10 @@ Route::get('/products/{slug}/images', [ProductController::class, 'productImages'
 Route::post('/products/{slug}/images/store', [ProductController::class, 'productImagesStore']);
 Route::post('/brand/{id}/update', [ProductController::class, 'update'])->name('brand.update');
 Route::get('/brand/{id}/delete', [ProductController::class, 'destroy'])->name('brand.delete');
+
+
+Route::get('/customer', [CustomerController::class, 'index']);
+
+
 
 //********************_End Product_********************

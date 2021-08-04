@@ -23,6 +23,11 @@ class Product extends Model
         'status',
         'sort_desc',
         'desc',
-        'slug'
+        'slug',
+        'qty'
     ];
+
+    function categories(){
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

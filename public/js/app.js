@@ -76322,6 +76322,30 @@ _Header_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file 
 
 /***/ }),
 
+/***/ "./resources/js/Pages/CustomerVerify/index.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/Pages/CustomerVerify/index.vue ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _index_vue_vue_type_custom_index_0_blockType_tamplate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=custom&index=0&blockType=tamplate */ "./resources/js/Pages/CustomerVerify/index.vue?vue&type=custom&index=0&blockType=tamplate");
+/* harmony import */ var _index_vue_vue_type_custom_index_0_blockType_tamplate__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_vue_vue_type_custom_index_0_blockType_tamplate__WEBPACK_IMPORTED_MODULE_0__);
+const script = {}
+script.__file = "resources/js/Pages/CustomerVerify/index.vue"
+/* custom blocks */
+;
+if (typeof (_index_vue_vue_type_custom_index_0_blockType_tamplate__WEBPACK_IMPORTED_MODULE_0___default()) === 'function') _index_vue_vue_type_custom_index_0_blockType_tamplate__WEBPACK_IMPORTED_MODULE_0___default()(script)
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (script);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Dashboard.vue":
 /*!******************************************!*\
   !*** ./resources/js/Pages/Dashboard.vue ***!
@@ -79327,6 +79351,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/CustomerVerify/index.vue?vue&type=custom&index=0&blockType=tamplate":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/Pages/CustomerVerify/index.vue?vue&type=custom&index=0&blockType=tamplate ***!
+  \************************************************************************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue3-select2-component/src/Select2.vue?vue&type=template&id=1279aa69":
 /*!*******************************************************************************************!*\
   !*** ./node_modules/vue3-select2-component/src/Select2.vue?vue&type=template&id=1279aa69 ***!
@@ -79645,6 +79679,10 @@ var map = {
 	"./Component/Alert.vue": "./resources/js/Pages/Component/Alert.vue",
 	"./Component/Header": "./resources/js/Pages/Component/Header.vue",
 	"./Component/Header.vue": "./resources/js/Pages/Component/Header.vue",
+	"./CustomerVerify": "./resources/js/Pages/CustomerVerify/index.vue",
+	"./CustomerVerify/": "./resources/js/Pages/CustomerVerify/index.vue",
+	"./CustomerVerify/index": "./resources/js/Pages/CustomerVerify/index.vue",
+	"./CustomerVerify/index.vue": "./resources/js/Pages/CustomerVerify/index.vue",
 	"./Dashboard": "./resources/js/Pages/Dashboard.vue",
 	"./Dashboard.vue": "./resources/js/Pages/Dashboard.vue",
 	"./Home": "./resources/js/Pages/Home/index.vue",
