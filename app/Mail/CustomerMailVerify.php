@@ -20,11 +20,11 @@ class CustomerMailVerify extends Mailable
      *
      * @return void
      */
-    public function __construct($email, $code, $name)
+    public function __construct($email, $code, $fName)
     {
         $this->email = $email;
         $this->code = $code;
-        $this->name = $name;
+        $this->name = $fName;
     }
 
     /**
@@ -34,8 +34,6 @@ class CustomerMailVerify extends Mailable
      */
     public function build()
     {
-        return $this->view('customerVerify');
-       // return $this.code;
-       // return Inertia::render('/CustomerVerify/index');
+        return $this->view('customerVerify')->with('code', $this->code)->with('name', $this->name);
     }
 }

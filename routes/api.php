@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\HomeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,4 +29,10 @@ Route::get('productList/{type}', [ProductController::class, 'categoriesFilterPro
 Route::get('brand/list', [BrandController::class, 'allBrand']);
 Route::get('brands/{id}', [ProductController::class, 'brandFilterProduct']);
 Route::post('/customer/register', [CustomerController::class, 'store']);
+Route::get('/customer/verify/{otp}', [CustomerController::class, 'otpVerify']);
+Route::post('/customer/password', [CustomerController::class, 'customerPassword']);
+Route::post('/customer/login', [CustomerController::class, 'login']);
+Route::get('/customer/check/{email}', [CustomerController::class, 'checkEmail']);
+
+Route::get('newArrival/product/{type}', [HomeController::class, 'newProduct']);
 

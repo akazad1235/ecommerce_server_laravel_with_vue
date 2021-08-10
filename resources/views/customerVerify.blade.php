@@ -74,8 +74,8 @@
         </div>
         <div class="content">
             <h4>Email Confirmation code</h4>
-            <p>Hello Azad, You are almost ready to product buy <strong>Doto Express</strong>. You Have got 6 digit code copy. If you close verify page then click got to button</p>
-            <h4>Your Code is: <storng>1245421</storng></h4>
+            <p>Hello <strong>{{$name}}</strong>, You are almost ready to product buy <strong>Doto Express</strong>. You Have got 6 digit code copy. If you close verify page then click got to button</p>
+            <h4>Your Code is: <storng>{{$code}}</storng></h4>
             <div class="button">
                 <button>Go to verify page</button>
             </div>
