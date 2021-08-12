@@ -35,8 +35,11 @@
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Name <span class="text-red">*</span></label>
-                                <input class="form-control" :class="viewMode==1? 'disabled' : ''" type="text" v-model="form.name" placeholder="Enter Category Name"/>
+                                <label>Amount Type <span class="text-red">*</span></label>
+                                <select class="form-control">
+                                    <option value="parcentage">Parcentage</option>
+                                    <option value="parcentage">amount</option>
+                                </select>
                                 <div class="text-danger" v-if="errors.name">{{ errors.name }}</div>
                             </div>
                             <div class="form-group">
@@ -57,9 +60,8 @@
                                              :searchable="true"
                                              placeholder="Select Categories"
                                              noResultsText="No results found"
-                                             label="label"
                                              noOptionsText="The list is empty"
-                                             trackBy="value"
+
                                 >
                                 </multiselect>
                             </div>
@@ -69,9 +71,7 @@
                                              :searchable="true"
                                              placeholder="Select Customers"
                                              noResultsText="No results found"
-                                             label="label"
                                              noOptionsText="The list is empty"
-                                             trackBy="value"
                                 >
                                 </multiselect>
                             </div>
@@ -80,10 +80,26 @@
 
                         </div>
                         <div class="col-sm-6">
-                           <h6>right side</h6>
-                            <div>
-                                <label class="typo__label">Single select</label>
-
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input type="number" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Coupon Code</label><br>
+                                <input type="radio" class="form-group" name="cpCode" value="Automated">
+                                <input type="radio" class="form-group" name="cpCode" value="Manual">
+                            </div>
+                            <div class="form-group">
+                                <label>Expiry Date</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Amount Type <span class="text-red">*</span></label>
+                                <select class="form-control">
+                                    <option value="active">Enable</option>
+                                    <option value="inactive">Disable</option>
+                                </select>
+                                <div class="text-danger" v-if="errors.name">{{ errors.name }}</div>
                             </div>
                         </div>
 
@@ -155,6 +171,7 @@ export default {
             brandOptions: [],
             categoriesOptions: [],
             customerOptions: [],
+
             form: {
                 index:'',
                 id: undefined,
@@ -165,17 +182,29 @@ export default {
         }
     },
     mounted () {
-        let brands = this.data.brand
-        let categories = this.data.categories
-        let customers = this.data.customer
+        let brands = this.data.brands;
+        let categories = this.data.categories;
+        let customers = this.data.customers;
         let i = 0
         this.brandOptions=[]
-        for(i=0; i<5; i++){
+        for(i=0; i<brands.length; i++){
             this.brandOptions.push({
                 value: brands[i].id,
                 label: brands[i].name
             })
-    }
+        }
+        for(i=0; i<categories.length; i++){
+            this.categoriesOptions.push({
+                value: categories[i].id,
+                label: categories[i].name
+            })
+        }
+        for(i=0; i<customers.length; i++){
+            this.customerOptions.push({
+                value: customers[i].id,
+                label: customers[i].name
+            })
+        }
     },
     methods: {
 

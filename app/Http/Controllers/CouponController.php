@@ -70,9 +70,9 @@ class CouponController extends Controller
      */
     public function create()
     {
-        $data['brand'] = Brand::get();
+        $data['brands'] = Brand::get();
         $data['categories'] = Category::get();
-        $data['customer'] = Customer::get();
+        $data['customers'] = Customer::get();
         return Inertia::render('Coupons/create', ['data' => $data]);
     }
 
