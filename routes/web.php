@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,11 @@ Route::get('/brand/{id}/delete', [ProductController::class, 'destroy'])->name('b
 
 Route::get('/customer', [CustomerController::class, 'index']);
 
-
-
 //********************_End Product_********************
+
+//********************_start Coupon_********************
+
+Route::resource('coupons', CouponController::class);
+
+
+//********************_End Coupon_********************

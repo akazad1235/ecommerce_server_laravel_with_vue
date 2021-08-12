@@ -73,6 +73,17 @@
                             </jet-responsive-nav-link>
                         </ul>
                     </li><!--**************_ Start Category_******************-->
+                    <!--**************_ Start Category_******************-->
+                    <li class="submenu">
+                        <a>
+                            <i class="fa fa-users"></i> <span> Coupons </span> <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="child-menu" :style="getMenu('coupons')">
+                            <jet-responsive-nav-link :href="route('coupons.index')" :active="route().current('coupons.index')">
+                                <span>All Coupons</span>
+                            </jet-responsive-nav-link>
+                        </ul>
+                    </li><!--**************_ Start Category_******************-->
                 </ul>
             </div>
         </div>
@@ -124,6 +135,7 @@ export default {
              const brand= ['brand.index'];
              const product= ['product.index'];
              const categories= ['categories.create', 'categories.index','categories.show', 'categories.update', 'categories.edit'];
+             const coupon= ['coupons.index'];
 
             if(menu === 'user' && user.includes(this.croute)) {
                 return 'display: block;'
@@ -135,6 +147,9 @@ export default {
                 return 'display: block;'
             }
             if(menu === 'product' && brand.includes(this.croute)) {
+                return 'display: block;'
+            }
+            if(menu === 'coupon' && brand.includes(this.croute)) {
                 return 'display: block;'
             }
 
