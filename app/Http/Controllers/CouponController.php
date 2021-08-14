@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class CouponController extends Controller
@@ -84,7 +85,34 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
+       // return $request->manual_cp_code;
+        $amountType = $request->amount_type;
+        $amount = $request->amount;
+        $status = $request->status;
+        $expiryDate = $request->expiry_date;
+        $categories = json_encode($request->categories);
+        $brands = json_encode($request->brands);
+        $customers = json_encode($request->customers);
 
+
+
+
+        if($request->cpCode == 'manual'){
+            $coupon_code = $request->manual_cp_code;
+        }else{
+           $coupon_code = mt_rand(0000, 9999);
+        }
+        Coupon::create([
+            'amount_type' => $amountType,
+            'customer' => $customers,
+            'categories' => $categories,
+            'brands' => $brands,
+            'coupon_code' => $coupon_code,
+            'amount' => $amount,
+            'expiry_date' => $expiryDate,
+            'status' => $status
+        ]);
+        return redirect()->route('coupons.index')->with('message', 'Coupon added successful');
     }
 
     /**

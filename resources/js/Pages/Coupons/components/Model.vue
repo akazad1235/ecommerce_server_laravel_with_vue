@@ -36,15 +36,15 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Amount Type <span class="text-red">*</span></label>
-                                <select class="form-control">
-                                    <option value="parcentage">Parcentage</option>
-                                    <option value="parcentage">amount</option>
+                                <select class="form-control" v-model="form.amount_type">
+                                    <option value="percentage">Percentage </option>
+                                    <option value="amount">amount</option>
                                 </select>
                                 <div class="text-danger" v-if="errors.name">{{ errors.name }}</div>
                             </div>
                             <div class="form-group">
                                 <label>Brand permission</label>
-                                <multiselect v-model="selectBrands" :options="brandOptions" mode="tags"
+                                <multiselect v-model="form.brands" :options="brandOptions" mode="tags"
                                              :searchable="true"
                                              placeholder="Select brand"
                                              noResultsText="No results found"
@@ -53,10 +53,11 @@
                                              trackBy="value"
                                              >
                                 </multiselect>
+                                {{form.brands}}
                             </div>
                             <div class="form-group">
                                 <label>Categories permission</label>
-                                <multiselect v-model="selectCategories" :options="categoriesOptions" mode="tags"
+                                <multiselect v-model="form.categories" :options="categoriesOptions" mode="tags"
                                              :searchable="true"
                                              placeholder="Select Categories"
                                              noResultsText="No results found"
@@ -64,16 +65,19 @@
 
                                 >
                                 </multiselect>
+                                {{form.categories}}
                             </div>
                             <div class="form-group">
                                 <label>Customer permission</label>
-                                <multiselect v-model="selectCustomers" :options="customerOptions" mode="tags"
+                                <multiselect v-model="form.customers" :options="customerOptions" mode="tags"
                                              :searchable="true"
                                              placeholder="Select Customers"
                                              noResultsText="No results found"
                                              noOptionsText="The list is empty"
                                 >
                                 </multiselect>
+                                {{form.customers}}
+
                             </div>
 
 
@@ -81,21 +85,24 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Amount</label>
-                                <input type="number" class="form-control">
+                                <label for="amount">Amount</label>
+                                <input type="number" id="amount" v-model="form.amount" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Coupon Code</label><br>
-                                <input type="radio" class="form-group" name="cpCode" value="Automated">
-                                <input type="radio" class="form-group" name="cpCode" value="Manual">
+                                <label >Coupon Code</label><br>
+                                <input type="radio" class="form-group"  value="automated" v-model="form.cpCode"> Automated
+                                <input type="radio" class="form-group"  value="manual" v-model="form.cpCode"> Manual
+                                <div v-if="form.cpCode === 'manual'">
+                                    <input type="text" class="form-control" v-model="form.manual_cp_code" placeholder="enter your code">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Expiry Date</label>
-                                <input type="date" class="form-control">
+                                <input type="datetime-local" class="form-control" v-model="form.expiry_date">
                             </div>
                             <div class="form-group">
                                 <label>Amount Type <span class="text-red">*</span></label>
-                                <select class="form-control">
+                                <select class="form-control" v-model="form.status">
                                     <option value="active">Enable</option>
                                     <option value="inactive">Disable</option>
                                 </select>
@@ -172,12 +179,19 @@ export default {
             categoriesOptions: [],
             customerOptions: [],
 
+
             form: {
                 index:'',
                 id: undefined,
-                name:null,
-
-
+                amount_type:null,
+                amount:null,
+                expiry_date:null,
+                manual_cp_code:null,
+                status:null,
+                categories:[],
+                brands:[],
+                customers:[],
+                cpCode:null,
             }
         }
     },
@@ -209,11 +223,27 @@ export default {
     methods: {
 
         save(params){
-            var data = new FormData()
-            data.append('name', params.name || '')
-            data.append('logo', this.file || '')
 
-            this.$inertia.post('/brand', data);
+            // data['amount_type'] = this.amount_type
+            // data['amount'] = this.amount
+            // data['expiry_date'] = this.expiry_date
+            // data['cpCode'] = this.cpCode
+            // data['manual_cp_code'] = this.manual_cp_code
+            // data['status'] = this.status
+
+           //  var data = new FormData()
+           //
+           //  data.append('amount_type', params.amount_type || '')
+           //  data.append('amount', params.amount || '')
+           //  data.append('expiry_date', params.expiry_date || '')
+           //  data.append('cpCode', this.cpCode|| '')
+           //  data.append('manual_cp_code', this.manual_cp_code|| '')
+           // // data.append('categories', [2,5,4,6] || '')
+           //  data.append('status', params.status || '')
+
+
+          this.$inertia.post('/coupons',  params);
+          this.form={ }
         },
         save_create(params){
             params['create_another'] = 1;
